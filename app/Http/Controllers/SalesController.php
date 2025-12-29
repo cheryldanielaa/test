@@ -75,4 +75,21 @@ class SalesController extends Controller
         $pdf = PDF::loadview('sales.template', ['sales' => $sales]);
         return $pdf->download('area-sales');
     }
+
+    public function edit($kode)
+    {
+        $data = DB::table('table_c')->where('kode_toko', '=', $kode)->first();
+        return view('sales.edit', ['data' => $data]);
+    }
+    public function update(Request $request)
+    {
+        $kodeToko = $request->kode_toko;
+        $nama_area = $request->area_sales;
+        DB::table('table_c')
+            ->where('kode_toko', $kodeToko)
+            ->update([
+                'area_sales' => $nama_area,
+            ]);
+        return redirect()->route('sales.index');
+    }
 }

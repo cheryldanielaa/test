@@ -28,8 +28,8 @@ Route::get('/sales/cari/{kode}', [SalesController::class,'cariNamaArea']);
 Route::get('/sales/export-excel', [SalesController::class,'exportExcel']);
 Route::get('/sales/export-pdf', [SalesController::class,'cetakPDF']);
 Route::post('/sales/import', [SalesController::class,'import']);
-
-
+Route::get('/sales/edit/{kode}', [SalesController::class,'edit']);
+Route::post('/sales/update', [SalesController::class,'update'])->name('sales.update');
 
 /*BUAT NAMA SALES*/
 Route::get('/daftar-nama-sales', [NamaSalesController::class,'index'])->name('nama-sales.index');
